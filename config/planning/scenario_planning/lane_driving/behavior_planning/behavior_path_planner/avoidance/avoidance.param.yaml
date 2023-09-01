@@ -2,18 +2,18 @@
 /**:
   ros__parameters:
     avoidance:
-      resample_interval_for_planning: 0.3             # [m]
+      resample_interval_for_planning: 0.1             # [m]
       resample_interval_for_output: 1.0                # [m]
       detection_area_right_expand_dist: 0.0             # [m]
       detection_area_left_expand_dist: 0.0              #1.0 [m]
       drivable_area_right_bound_offset: 0.0             # [m]
       drivable_area_left_bound_offset: 0.0              # [m]
-      object_envelope_buffer: 0.35                       # [m]
+      object_envelope_buffer: 0.4                      # [m]
 
       # avoidance module common setting
       enable_bound_clipping: true
       enable_avoidance_over_same_direction: true
-      enable_avoidance_over_opposite_direction: true
+      enable_avoidance_over_opposite_direction: false
       enable_update_path_when_object_is_gone: true
       enable_force_avoidance_for_stopped_vehicle: true
       enable_safety_check: false
@@ -26,8 +26,8 @@
 
       # avoidance is performed for the object type with true
       target_object:
-        car: true
-        truck: true
+        car: false
+        truck: false
         bus: false
         trailer: false
         unknown: true
@@ -40,26 +40,26 @@
         # filtering moving objects
         threshold_speed_object_is_stopped: 1.0          # [m/s]
         threshold_time_object_is_moving: 1.0            # [s]
-        threshold_time_force_avoidance_for_stopped_vehicle: 4.0 # [s]
+        threshold_time_force_avoidance_for_stopped_vehicle: 10.0 # [s]
         # detection range
-        object_check_force_avoidance_clearance: 0.1    # [m]
-        object_check_forward_distance: 20.0            # [m]
+        object_check_force_avoidance_clearance: 1.0    # [m]
+        object_check_forward_distance: 16.5            # [m]
         object_check_backward_distance: 0.0             # [m]
-        object_check_goal_distance: 20.0                # [m]
+        object_check_goal_distance: 16.5                # [m]
         # filtering parking objects
-        threshold_distance_object_is_on_center: 0.9     # [m]
-        object_check_shiftable_ratio: 0.6               # [-]
-        object_check_min_road_shoulder_width: 0.5       # [m]
+        threshold_distance_object_is_on_center: 0.0     # [m]
+        object_check_shiftable_ratio: 0.4               # [-]
+        object_check_min_road_shoulder_width: 0.1       # [m]
         # lost object compensation
         object_last_seen_threshold: 2.0
 
       # For safety check
       safety_check:
-        safety_check_backward_distance: 5.0            # [m]
-        safety_check_time_horizon: 4.0                  # [s]
-        safety_check_idling_time: 1.5                    # [s]
-        safety_check_accel_for_rss: 1.0                  # [m/ss]
-        safety_check_hysteresis_factor: 2.0              # [-]
+        safety_check_backward_distance: 0.5            # [m]
+        safety_check_time_horizon: 0.4                  # [s]
+        safety_check_idling_time: 0.15                    # [s]
+        safety_check_accel_for_rss: 0.1                  # [m/ss]
+        safety_check_hysteresis_factor: 0.2              # [-]
 
       # For avoidance maneuver
       avoidance:
@@ -75,7 +75,7 @@
         # avoidance distance parameters
         longitudinal:
           prepare_time: 0.2                             # [s]
-          longitudinal_collision_safety_buffer: 0.4    # [m]
+          longitudinal_collision_safety_buffer: 0.7    # [m]
           min_prepare_distance: 0.03                    # [m]
           min_avoidance_distance: 0.6                  # [m]
           min_nominal_avoidance_speed: 0.5              # [m/s]
@@ -112,5 +112,5 @@
       target_velocity_matrix:
         col_size: 2
         matrix:
-          [2.78, 13.9,                                  # velocity [m/s]
+          [1.08, 1.58,                                  # velocity [m/s]
            0.50, 1.00]                                  # margin [m]
